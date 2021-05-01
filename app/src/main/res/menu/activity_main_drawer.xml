@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_home"
+            android:title="@string/menu_home" />
+        <item
+            android:id="@+id/nav_popular_cat"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="@string/title_popular_serchces"
+            android:visible="false"/>
+
+        <item
+            android:id="@+id/nav_diab_mgnt"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="@string/title_diabetes_mgmt" />
+        <item
+            android:id="@+id/nav_order_medicine"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="@string/title_order_medicine" />
+
+        <item
+            android:id="@+id/nav_book_lab"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="@string/title_book_lab_tests" />
+
+        <item
+            android:id="@+id/nav_doctor_consultation"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="@string/title_doctor_consultation" />
+
+        <item
+            android:id="@+id/nav_fertility_clinic"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="@string/title_fertility_clinic" />
+
+        <item
+            android:id="@+id/nav_weight_loss"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="@string/title_weight_loss" />
+
+        <item
+            android:id="@+id/nav_rent_medical"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="@string/title_rent_medical_equipment" />
+
+        <item
+            android:id="@+id/nav_health_insurance"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="@string/title_health_insurance_policy" />
+
+        <item
+            android:id="@+id/nav_yoga_wellness"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="@string/title_yoga_wellness" />
+
+        <item
+            android:id="@+id/nav_organic_food"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="@string/title_organic_food_store" />
+
+        <item
+            android:id="@+id/nav_welnesscorner"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="@string/menu_wellness_corner" />
+
+        <item
+            android:id="@+id/nav_comunity_center"
+            android:icon="@drawable/ic_comunity"
+            android:title="@string/menu_comunity_center" />
+    </group>
+    <group
+        android:id="@+id/menu_bottom"
+        android:checkableBehavior="none">
+
+        <item
+            android:id="@+id/nav_privacy_policy"
+            android:icon="@drawable/ic_privacy"
+            android:title="@string/menu_privacy_policy" />
+
+        <item
+            android:id="@+id/nav_terms_condition"
+            android:icon="@drawable/ic_terms"
+            android:title="@string/menu_terms_condition" />
+
+        <item
+            android:id="@+id/nav_share"
+            android:icon="@drawable/ic_share"
+            android:title="@string/menu_share" />
+
+        <item
+            android:id="@+id/nav_logout"
+            android:title="@string/menu_logout" />
+    </group>
+</menu>

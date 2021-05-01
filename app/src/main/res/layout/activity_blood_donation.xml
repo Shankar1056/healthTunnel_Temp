@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+            name="viewmodel"
+            type="com.healthtunnel.ui.blood.BloodViewModel" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color_white">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/AppTheme.AppBarOverlay"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/colorPrimary"
+                app:navigationIcon="@drawable/ic_arrow_back"
+                app:popupTheme="@style/AppTheme.PopupOverlay"
+                app:titleTextColor="@color/header_black" />
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/appBar">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <TextView
+                    android:id="@+id/textBloodDonar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:fontFamily="@font/bold"
+                    android:text="@string/title_become_blood_donar"
+                    android:textColor="@color/header_black"
+                    android:textSize="18sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textBloodDonarDesc"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginEnd="30dp"
+                    android:fontFamily="@font/regular"
+                    android:gravity="center"
+                    android:text="@string/title_blood_donar_desc"
+                    android:textColor="@color/text_black"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textBloodDonar" />
+
+
+                <TextView
+                    android:id="@+id/textyob"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="20dp"
+                    android:drawableLeft="@drawable/ic_data_of_birth"
+                    android:drawablePadding="10dp"
+                    android:fontFamily="@font/regular"
+                    android:text="@string/titl_year_of_birth"
+                    android:textColor="@color/header_black"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toStartOf="@+id/textBloodDonarDesc"
+                    app:layout_constraintTop_toBottomOf="@+id/textBloodDonarDesc" />
+
+                <TextView
+                    android:id="@+id/tvSelectYear"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="35dp"
+                    android:layout_marginEnd="20dp"
+                    android:drawableRight="@drawable/down_arrow_24"
+                    android:fontFamily="@font/regular"
+                    android:onClick="@{viewmodel::onYearClicked}"
+                    android:paddingBottom="5dp"
+                    android:text="@{viewmodel.selectedYear}"
+                    android:textColor="@color/color_green"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/textyob"
+                    app:layout_constraintTop_toBottomOf="@+id/textyob" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0.5dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@color/divider"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/tvSelectYear"
+                    app:layout_constraintTop_toBottomOf="@+id/tvSelectYear" />
+
+                <TextView
+                    android:id="@+id/textBloodType"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:drawableLeft="@drawable/ic_blood_type"
+                    android:drawablePadding="10dp"
+                    android:fontFamily="@font/regular"
+                    android:text="@string/titl_blood_type"
+                    android:textColor="@color/header_black"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toStartOf="@+id/textyob"
+                    app:layout_constraintTop_toBottomOf="@+id/tvSelectYear" />
+
+                <TextView
+                    android:id="@+id/tvSelectBloodType"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="20dp"
+                    android:drawableRight="@drawable/down_arrow_24"
+                    android:fontFamily="@font/regular"
+                    android:onClick="@{viewmodel::onBloodTypeClicked}"
+                    android:paddingBottom="5dp"
+                    android:text="@{viewmodel.selectedBloodType}"
+                    android:textColor="@color/color_green"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/tvSelectYear"
+                    app:layout_constraintTop_toBottomOf="@+id/textBloodType" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0.5dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@color/divider"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/tvSelectYear"
+                    app:layout_constraintTop_toBottomOf="@+id/tvSelectBloodType" />
+
+                <TextView
+                    android:id="@+id/textBloodDonate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:drawableLeft="@drawable/ic_date_range"
+                    android:drawablePadding="10dp"
+                    android:fontFamily="@font/regular"
+                    android:text="@string/titl_blood_donate_message"
+                    android:textColor="@color/header_black"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toStartOf="@+id/textyob"
+                    app:layout_constraintTop_toBottomOf="@+id/tvSelectBloodType" />
+
+                <TextView
+                    android:id="@+id/tvSelectBloodDonate"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="20dp"
+                    android:drawableRight="@drawable/down_arrow_24"
+                    android:fontFamily="@font/regular"
+                    android:onClick="@{viewmodel::onBloodDonatedClicked}"
+                    android:paddingBottom="5dp"
+                    android:text="@{viewmodel.selectedBloodDonate}"
+                    android:textColor="@color/color_green"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/tvSelectYear"
+                    app:layout_constraintTop_toBottomOf="@+id/textBloodDonate" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0.5dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@color/divider"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/tvSelectYear"
+                    app:layout_constraintTop_toBottomOf="@+id/tvSelectBloodDonate" />
+
+                <TextView
+                    android:id="@+id/textCovid"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:drawableLeft="@drawable/ic_covid"
+                    android:drawablePadding="10dp"
+                    android:fontFamily="@font/regular"
+                    android:text="@string/titl_covid_survivour"
+                    android:textColor="@color/header_black"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toStartOf="@+id/textyob"
+                    app:layout_constraintTop_toBottomOf="@+id/tvSelectBloodDonate" />
+
+                <TextView
+                    android:id="@+id/tvCovid"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="20dp"
+                    android:drawableRight="@drawable/down_arrow_24"
+                    android:fontFamily="@font/regular"
+                    android:onClick="@{viewmodel::onBloodCovidClicked}"
+                    android:paddingBottom="5dp"
+                    android:text="@{viewmodel.selectedCovid}"
+                    android:textColor="@color/color_green"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/tvSelectYear"
+                    app:layout_constraintTop_toBottomOf="@+id/textCovid" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0.5dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@color/divider"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/tvSelectYear"
+                    app:layout_constraintTop_toBottomOf="@+id/tvCovid" />
+
+                <TextView
+                    android:id="@+id/textPlasma"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:drawableLeft="@drawable/ic_blood_type"
+                    android:drawablePadding="10dp"
+                    android:fontFamily="@font/regular"
+                    android:text="@string/titl_blood_donate_plasma"
+                    android:textColor="@color/header_black"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toStartOf="@+id/textyob"
+                    app:layout_constraintTop_toBottomOf="@+id/tvCovid" />
+
+                <TextView
+                    android:id="@+id/tvPlasma"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="20dp"
+                    android:drawableRight="@drawable/down_arrow_24"
+                    android:fontFamily="@font/regular"
+                    android:onClick="@{viewmodel::onPlasmaBloodClicked}"
+                    android:paddingBottom="5dp"
+                    android:text="@{viewmodel.selectedPlasma}"
+                    android:textColor="@color/color_green"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/tvSelectYear"
+                    app:layout_constraintTop_toBottomOf="@+id/textPlasma" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0.5dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@color/divider"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/tvSelectYear"
+                    app:layout_constraintTop_toBottomOf="@+id/tvPlasma" />
+
+                <CheckBox
+                    android:id="@+id/termsConditionCB"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp"
+                    android:layout_marginEnd="20dp"
+                    android:fontFamily="@font/regular"
+                    android:gravity="center_vertical|top"
+                    android:paddingStart="10dp"
+                    android:text="@string/titl_blood_donation_terms_condition"
+                    android:textColor="@color/text_grey"
+                    android:textSize="10sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/textyob"
+                    app:layout_constraintTop_toBottomOf="@+id/tvPlasma" />
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    android:alpha="@{viewmodel.isChecked() ? 1.0f : 0.5f}"
+                    android:background="@drawable/rounded_shape"
+                    android:clickable="@{viewmodel.isChecked() ? true : false}"
+                    android:fontFamily="@font/medium"
+                    android:onClick="@{viewmodel::onSubmitClicked}"
+                    android:text="@string/action_submit"
+                    android:textColor="@android:color/white"
+                    app:layout_constraintTop_toBottomOf="@+id/termsConditionCB" />
+
+                <ProgressBar
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="@{viewmodel.showProgressDialog ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+
+        <LinearLayout
+            android:id="@+id/full_screen_dialog"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:visibility="gone"
+            android:background="@color/color_white">
+
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:elevation="10dp"
+                app:cardCornerRadius="8dp">
+
+                <ImageView
+                    android:id="@+id/fullScreenImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+            name="viewmodel"
+            type="com.healthtunnel.ui.ecom.EcomViewModel" />
+
+        <variable
+            name="model"
+            type="com.healthtunnel.data.model.CartDetailsResult" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color_white">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/topbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/AppTheme.AppBarOverlay"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/colorPrimary"
+                app:navigationIcon="@drawable/ic_arrow_back"
+                app:popupTheme="@style/AppTheme.PopupOverlay"
+                app:titleTextColor="@color/header_black">
+
+
+            </androidx.appcompat.widget.Toolbar>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/topbar">
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/mainCL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:paddingBottom="50dp">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cv"
+                    android:layout_width="155dp"
+                    android:layout_height="100dp"
+                    android:elevation="3dp"
+                    app:cardCornerRadius="3dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageView
+                        android:id="@+id/image"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="fitXY"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:id="@+id/name"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:fontFamily="@font/medium"
+                    android:textColor="@color/header_black"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/cv"
+                    app:layout_constraintTop_toTopOf="@+id/cv" />
+
+                <TextView
+                    android:id="@+id/distance"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/regular"
+                    android:textColor="@color/header_black"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/name"
+                    app:layout_constraintTop_toBottomOf="@+id/name" />
+
+                <TextView
+                    android:id="@+id/location"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/regular"
+                    android:maxLines="3"
+                    android:textColor="@color/header_black"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/name"
+                    app:layout_constraintTop_toBottomOf="@+id/distance" />
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/businessRV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:background="@color/color_white"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintTop_toBottomOf="@+id/cv"
+                    tools:listitem="@layout/item_cart" />
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/topCv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15dp"
+                    android:elevation="3dp"
+                    app:cardCornerRadius="3dp"
+                    app:cardUseCompatPadding="true"
+                    app:layout_constraintTop_toBottomOf="@+id/businessRV">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="20dp">
+
+                        <TextView
+                            android:id="@+id/billDetails"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:fontFamily="@font/medium"
+                            android:text="@string/title_bill_details"
+                            android:textColor="@color/header_black"
+                            android:textSize="14sp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/total_amount"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:fontFamily="@font/regular"
+                            android:text="@string/title_total_item"
+                            android:textColor="@color/header_black"
+                            android:textSize="14sp"
+                            app:layout_constraintStart_toStartOf="@+id/billDetails"
+                            app:layout_constraintTop_toBottomOf="@+id/billDetails" />
+
+                        <TextView
+                            android:id="@+id/totalAmount"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="10dp"
+                            android:fontFamily="@font/regular"
+                            android:textColor="@color/header_black"
+                            android:textSize="14sp"
+                            app:layout_constraintBottom_toBottomOf="@+id/total_amount"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/total_amount" />
+
+                        <TextView
+                            android:id="@+id/delivery_fee"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:fontFamily="@font/regular"
+                            android:text="@string/title_delivery_fee"
+                            android:textColor="@color/header_black"
+                            android:textSize="14sp"
+                            android:visibility="gone"
+                            app:layout_constraintStart_toStartOf="@+id/billDetails"
+                            app:layout_constraintTop_toBottomOf="@+id/totalAmount" />
+
+                        <TextView
+                            android:id="@+id/deliveryFee"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/regular"
+                            android:text="Rs. 0.00"
+                            android:textColor="@color/header_black"
+                            android:textSize="14sp"
+                            android:visibility="gone"
+                            app:layout_constraintBottom_toBottomOf="@+id/delivery_fee"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="@+id/totalAmount"
+                            app:layout_constraintTop_toTopOf="@+id/delivery_fee" />
+
+                        <TextView
+                            android:id="@+id/texas"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:fontFamily="@font/regular"
+                            android:text="@string/title_texas_charges"
+                            android:textColor="@color/header_black"
+                            android:textSize="14sp"
+                            android:visibility="gone"
+                            app:layout_constraintStart_toStartOf="@+id/billDetails"
+                            app:layout_constraintTop_toBottomOf="@+id/deliveryFee" />
+
+                        <TextView
+                            android:id="@+id/texasCharges"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/regular"
+                            android:textColor="@color/header_black"
+                            android:textSize="14sp"
+                            android:visibility="gone"
+                            app:layout_constraintBottom_toBottomOf="@+id/texas"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/texas" />
+
+                        <View
+                            android:id="@+id/view"
+                            android:layout_width="match_parent"
+                            android:layout_height="0.5dp"
+                            android:layout_marginTop="20dp"
+                            android:background="@color/divider"
+                            app:layout_constraintTop_toBottomOf="@+id/texasCharges" />
+
+                        <TextView
+                            android:id="@+id/to_pay"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:fontFamily="@font/bold"
+                            android:text="@string/title_pay_now"
+                            android:textColor="@color/color_green"
+                            android:textSize="14sp"
+                            app:layout_constraintStart_toStartOf="@+id/billDetails"
+                            app:layout_constraintTop_toBottomOf="@+id/view" />
+
+                        <TextView
+                            android:id="@+id/toPay"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/regular"
+                            android:textColor="@color/color_green"
+                            android:textSize="14sp"
+                            app:layout_constraintBottom_toBottomOf="@+id/to_pay"
+                            app:layout_constraintStart_toStartOf="@+id/totalAmount"
+                            app:layout_constraintTop_toTopOf="@+id/to_pay" />
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.cardview.widget.CardView>
+
+                <Button
+                    android:id="@+id/cartContinue"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:background="@drawable/rounded_shape"
+                    android:fontFamily="@font/bold"
+                    android:text="@string/title_continue"
+                    android:textAllCaps="false"
+                    android:textColor="@color/color_white"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toEndOf="@+id/topCv"
+                    app:layout_constraintStart_toStartOf="@+id/topCv"
+                    app:layout_constraintTop_toBottomOf="@+id/topCv" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+
+        <TextView
+            android:id="@+id/noItemInCartText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/medium"
+            android:gravity="center"
+            android:text="@string/title_no_item_in_cart"
+            android:textColor="@color/header_black"
+            android:textSize="18sp"
+            android:visibility="gone" />
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{viewmodel.showProgress ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

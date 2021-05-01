@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+            name="viewmodel"
+            type="com.healthtunnel.ui.ecom.EcomViewModel" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color_white">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/topbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/AppTheme.AppBarOverlay"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/colorPrimary"
+                app:navigationIcon="@drawable/ic_arrow_back"
+                app:popupTheme="@style/AppTheme.PopupOverlay"
+                app:titleTextColor="@color/header_black">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/locationCL"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/textLocation"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/medium"
+                        android:textAllCaps="true"
+                        android:textColor="@color/header_black"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:layout_marginEnd="10dp"
+                        app:layout_constraintEnd_toStartOf="@+id/card"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+
+                    <ImageView
+                        android:id="@+id/card"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="20dp"
+                        android:background="@drawable/ic_cart"
+                        android:padding="15dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.appcompat.widget.Toolbar>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <TextView
+            android:id="@+id/about"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:fontFamily="@font/medium"
+            android:gravity="center"
+            android:onClick="@{viewmodel::onAboutClicked}"
+            android:text="@string/title_about"
+            android:textColor="@{viewmodel.clickedPosition == 1 ? @color/header_black : @color/text_grey}"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toStartOf="@+id/shopNow"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/topbar" />
+
+        <TextView
+            android:id="@+id/shopNow"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:fontFamily="@font/medium"
+            android:gravity="center"
+            android:onClick="@{viewmodel::onShopNowClicked}"
+            android:text="@string/title_shop_now"
+            android:textColor="@{viewmodel.clickedPosition == 2 ? @color/header_black : @color/text_grey}"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/about"
+            app:layout_constraintTop_toTopOf="@+id/about" />
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/divider"
+            app:layout_constraintTop_toBottomOf="@+id/about" />
+
+        <View
+            android:layout_width="70dp"
+            android:layout_height="1dp"
+            android:background="@color/color_green"
+            android:visibility="@{viewmodel.clickedPosition == 1 ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toTopOf="@+id/view"
+            app:layout_constraintEnd_toEndOf="@+id/about"
+            app:layout_constraintStart_toStartOf="@+id/about" />
+
+        <View
+            android:layout_width="100dp"
+            android:layout_height="1dp"
+            android:background="@color/color_green"
+            android:visibility="@{viewmodel.clickedPosition == 2 ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toTopOf="@+id/view"
+            app:layout_constraintEnd_toEndOf="@+id/shopNow"
+            app:layout_constraintStart_toStartOf="@+id/shopNow" />
+
+        <FrameLayout
+            android:id="@+id/frameLayout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="15dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view" />
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{viewmodel.showProgress ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

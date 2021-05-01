@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewmodel"
+            type="com.healthtunnel.ui.ecom.EcomViewModel" />
+
+        <import type="com.healthtunnel.ui.utility.Utility" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color_white">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/bold"
+                    android:textColor="@color/header_black"
+                    android:textSize="18sp"
+                    android:text="@{viewmodel.tite}"
+                    app:layout_constraintEnd_toEndOf="@+id/topCV"
+                    app:layout_constraintStart_toStartOf="@+id/topCV"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/topCV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15dp"
+                    app:cardCornerRadius="3dp"
+                    app:cardUseCompatPadding="true"
+                    app:layout_constraintTop_toBottomOf="@+id/title">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="20dp">
+
+                        <ImageView
+                            android:id="@+id/nearIcon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/ic_near_me"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/distanceText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="15dp"
+                            android:fontFamily="@font/bold"
+                            android:text="@string/title_distance"
+                            android:textColor="@color/header_black"
+                            android:textSize="14sp"
+                            app:layout_constraintStart_toEndOf="@+id/nearIcon"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/distance"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="15dp"
+                            android:fontFamily="@font/regular"
+                            android:text="@{Utility.getDistanceInKM(viewmodel.distance)+` Km`}"
+                            android:textColor="@color/header_black"
+                            android:textSize="12sp"
+                            app:layout_constraintStart_toEndOf="@+id/nearIcon"
+                            app:layout_constraintTop_toBottomOf="@+id/distanceText" />
+
+                        <ImageView
+                            android:id="@+id/locationIcon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            android:background="@drawable/ic_near_me"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/distance" />
+
+                        <TextView
+                            android:id="@+id/locationText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="15dp"
+                            android:fontFamily="@font/bold"
+                            android:text="@string/title_location"
+                            android:textColor="@color/header_black"
+                            android:textSize="14sp"
+                            app:layout_constraintStart_toEndOf="@+id/locationIcon"
+                            app:layout_constraintTop_toTopOf="@+id/locationIcon" />
+
+                        <TextView
+                            android:id="@+id/location"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="15dp"
+                            android:fontFamily="@font/regular"
+                            android:textColor="@color/header_black"
+                            android:textSize="12sp"
+                            app:layout_constraintStart_toEndOf="@+id/nearIcon"
+                            app:layout_constraintTop_toBottomOf="@+id/locationText" />
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.cardview.widget.CardView>
+
+
+
+                <androidx.viewpager.widget.ViewPager
+                    android:id="@+id/imageViewPager"
+                    android:layout_width="0dp"
+                    android:layout_height="150dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@android:color/white"
+                    app:layout_constraintEnd_toEndOf="@+id/topCV"
+                    app:layout_constraintStart_toStartOf="@+id/topCV"
+                    app:layout_constraintTop_toBottomOf="@+id/topCV" />
+
+                <com.healthtunnel.ui.utility.DotsIndicator
+                    android:id="@+id/dotsIndicator"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="6dp"
+                    app:dot_drawable="@drawable/ic_dot_darkgrey"
+                    app:dot_drawable_unselected="@drawable/ic_dot_lightgrey"
+                    app:dot_height="8dp"
+                    app:dot_margin="6dp"
+                    app:dot_width="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/imageViewPager" />
+
+
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/aboutCV"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15dp"
+                    android:layout_marginTop="15dp"
+                    app:cardCornerRadius="3dp"
+                    app:cardUseCompatPadding="true"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/dotsIndicator">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="20dp">
+
+                        <TextView
+                            android:id="@+id/aboutText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/medium"
+                            android:text="@string/title_about"
+                            android:textColor="@color/header_black"
+                            android:textSize="14sp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/about"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginEnd="15dp"
+                            android:fontFamily="@font/regular"
+                            android:textSize="12sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="@+id/aboutText"
+                            app:layout_constraintTop_toBottomOf="@+id/aboutText" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/middleCV"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    app:layout_constraintEnd_toEndOf="@+id/topCV"
+                    app:layout_constraintStart_toStartOf="@+id/aboutCV"
+                    app:layout_constraintTop_toBottomOf="@+id/aboutCV">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="20dp">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:background="@mipmap/privacycheckup" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="10dp"
+                            android:fontFamily="@font/medium"
+                            android:text="@string/title_services"
+                            android:textColor="@color/header_black"
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="15dp"
+                            android:fontFamily="@font/regular"
+                            android:gravity="center"
+                            android:text="@string/title_dummy_text"
+                            android:textColor="@color/text_black"
+                            android:textSize="12sp" />
+
+                        <Button
+                            android:id="@+id/payNow"
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="15dp"
+                            android:background="@drawable/rounded_shape"
+                            android:fontFamily="@font/medium"
+                            android:onClick="@{viewmodel::onButtonClicked}"
+                            android:text="@string/title_shop_now"
+                            android:textAllCaps="false"
+                            android:textColor="@color/color_white"
+                            android:textSize="14sp" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.5dp"
+                            android:layout_marginTop="15dp"
+                            android:background="@color/divider" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/categoryCV"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                            tools:listitem="@layout/item_business_category" />
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewmodel"
+            type="com.healthtunnel.ui.auth.AuthViewModel" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/text3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:text="@string/titl_start_living_health_life"
+            android:textColor="@color/header_black"
+            android:textSize="16sp"
+            android:fontFamily="@font/medium"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/mobileViewLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text3">
+
+            <TextView
+                android:id="@+id/countryId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="+ 91"
+                android:textColor="@color/header_black"
+                android:textSize="20sp"
+                android:fontFamily="@font/medium"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/view"
+                android:layout_width="1dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:background="@color/border_color"
+                app:layout_constraintBottom_toBottomOf="@+id/countryId"
+                app:layout_constraintStart_toEndOf="@+id/countryId"
+                app:layout_constraintTop_toTopOf="@+id/countryId" />
+
+            <EditText
+                android:id="@+id/text2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:digits="@string/input_digits"
+                android:fontFamily="@font/medium"
+                android:hint="@string/hint_enter_mobile_number"
+                android:imeOptions="actionDone"
+                android:inputType="number"
+                android:maxLength="10"
+                android:paddingStart="15dp"
+                android:textColor="@color/text_grey"
+                android:textSize="16sp"
+                android:onClick="@{viewmodel::onIntroMobileClicked}"
+                app:addTextChangedListener="@{viewmodel.getMobileNumber()}"
+                app:layout_constraintStart_toEndOf="@+id/view"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/view2"
+                android:layout_width="0dp"
+                android:layout_height="0.5dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/border_color"
+                app:layout_constraintEnd_toEndOf="@+id/text2"
+                app:layout_constraintStart_toStartOf="@+id/countryId"
+                app:layout_constraintTop_toBottomOf="@+id/view" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/txt"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/medium"
+            android:gravity="center"
+            android:text="@string/title_not_share_mobile_number"
+            android:textColor="@color/text_grey"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/mobileViewLayout" />
+
+        <!--<androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/submit_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:onClick="@{viewmodel::getOtpButtonClicked}"
+            app:layout_constraintTop_toBottomOf="@+id/txt">
+
+            <include layout="@layout/submit__button"
+                bind:user="@{viewmodel}"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:background="@drawable/rounded_shape"
+            android:onClick="@{viewmodel::getOtpButtonClicked}"
+            android:text="@string/action_submit"
+            android:fontFamily="@font/medium"
+            android:textColor="@android:color/white"
+            app:layout_constraintTop_toBottomOf="@+id/txt" />
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:visibility="@{viewmodel.showProgressDialog ? View.VISIBLE : View.GONE}"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,84 @@
+{
+  "project_info": {
+    "project_number": "324857517736",
+    "project_id": "health-tunnel",
+    "storage_bucket": "health-tunnel.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:324857517736:android:2c86c867882c94ec00149d",
+        "android_client_info": {
+          "package_name": "com.healthtunnel"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "324857517736-k4l32tqtdoclfuqn6o1mi0iki1g3n2ui.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.healthtunnel",
+            "certificate_hash": "105982b92fe40a4b4bde58ce2f8d3967dc6e2633"
+          }
+        },
+        {
+          "client_id": "324857517736-3h78b8o385mkgnbvgraesb8j1mvrhgil.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDyY0V7Y_-CkrCAmNgxj5snteid25LwS1I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "324857517736-3h78b8o385mkgnbvgraesb8j1mvrhgil.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:324857517736:android:dd71b150d4954d2200149d",
+        "android_client_info": {
+          "package_name": "com.remainder"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "324857517736-psqasq5gnrmclohbtko410a976j501eg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.remainder",
+            "certificate_hash": "105982b92fe40a4b4bde58ce2f8d3967dc6e2633"
+          }
+        },
+        {
+          "client_id": "324857517736-3h78b8o385mkgnbvgraesb8j1mvrhgil.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDyY0V7Y_-CkrCAmNgxj5snteid25LwS1I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "324857517736-3h78b8o385mkgnbvgraesb8j1mvrhgil.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

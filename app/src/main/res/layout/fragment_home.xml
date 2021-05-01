@@ -1,0 +1,485 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewmodel"
+            type="com.healthtunnel.ui.home.HomeViewModel" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color_white"
+        tools:context=".ui.home.HomeFragment">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toStartOf="@+id/populatText"
+                app:layout_constraintStart_toStartOf="@+id/populatText">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/emergencyMedicalLoan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    android:background="@drawable/rounded_shape_corona"
+                    android:paddingStart="15dp"
+                    android:paddingTop="15dp"
+                    android:paddingEnd="15dp"
+                    android:visibility="gone"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:id="@id/emergencyText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/medium"
+                        android:gravity="center_vertical"
+                        android:text="@string/action_medicalemmergency_loan"
+                        android:textColor="@color/corona_color"
+                        android:textSize="16sp"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/applyLoan"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:fontFamily="@font/regular"
+                        android:gravity="center_vertical"
+                        android:text="@string/action_apply_for_loan"
+                        android:textColor="@color/corona_color"
+                        android:textSize="12sp"
+                        app:layout_constraintEnd_toStartOf="@+id/loanImage"
+                        app:layout_constraintStart_toStartOf="@+id/emergencyText"
+                        app:layout_constraintTop_toBottomOf="@+id/emergencyText" />
+
+                    <ImageView
+                        android:id="@+id/loanImage"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:background="@drawable/medical_loan"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/diab_mgmt"
+                    android:layout_width="0dp"
+                    android:layout_height="38dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="5dp"
+                    android:background="@drawable/rounded_shape_green"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toStartOf="@+id/populatText"
+                    app:layout_constraintStart_toStartOf="@+id/emergencyMedicalLoan"
+                    app:layout_constraintTop_toBottomOf="@+id/emergencyMedicalLoan">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:drawableLeft="@drawable/diabetic_image"
+                        android:drawablePadding="15dp"
+                        android:fontFamily="@font/regular"
+                        android:gravity="center"
+                        android:text="@string/title_diabetes_mgmt"
+                        android:textColor="@color/color_white"
+                        android:textSize="10.5sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/populatText"
+                    android:layout_width="0dp"
+                    android:layout_height="38dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/rounded_shape"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="@+id/emergencyMedicalLoan"
+                    app:layout_constraintStart_toEndOf="@+id/diab_mgmt"
+                    app:layout_constraintTop_toBottomOf="@+id/emergencyMedicalLoan">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:drawableLeft="@drawable/ic_second_opinion"
+                        android:drawablePadding="5dp"
+                        android:fontFamily="@font/regular"
+                        android:gravity="center"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp"
+                        android:text="@string/title_medical_second_opinion"
+                        android:textColor="@color/color_white"
+                        android:textSize="10.5sp" />
+
+                </LinearLayout>
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/popularCatRv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                    app:layout_constraintTop_toBottomOf="@+id/populatText"
+                    app:spanCount="3"
+                    tools:itemCount="6"
+                    tools:listitem="@layout/item_home_category" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/popularCatRvHor"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:clipToPadding="false"
+                    android:paddingRight="17dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/popularCatRv"
+                    tools:listitem="@layout/item_home_category_hor" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/popularCatRv2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                    app:layout_constraintTop_toBottomOf="@+id/popularCatRvHor"
+                    app:spanCount="3"
+                    tools:itemCount="6"
+                    tools:listitem="@layout/item_home_category" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/popularCatRvHor2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:clipToPadding="false"
+                    android:paddingRight="17dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/popularCatRv2"
+                    tools:listitem="@layout/item_home_category_hor" />
+
+                <ImageView
+                    android:id="@+id/pillBanner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/remainder_banner"
+                    android:onClick="@{viewmodel::onPillRemainderClicked}"
+                    android:visibility="gone"
+                    app:layout_constraintTop_toBottomOf="@+id/popularCatRvHor2" />
+
+
+                <TextView
+                    android:id="@+id/coronaButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_margin="20dp"
+                    android:background="@drawable/rounded_shape_corona"
+                    android:drawableLeft="@drawable/ic_virus"
+                    android:drawablePadding="15dp"
+                    android:fontFamily="@font/medium"
+                    android:gravity="center_vertical"
+                    android:paddingStart="20dp"
+                    android:text="@string/action_corona_text"
+                    android:textColor="@color/corona_color"
+                    app:layout_constraintTop_toBottomOf="@+id/viewRequest" />
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/wellnessLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/color_sky_blue"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:visibility="gone"
+                    app:layout_constraintTop_toBottomOf="@+id/coronaButton">
+
+                    <TextView
+                        android:id="@+id/wellnessText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/medium"
+                        android:gravity="center"
+                        android:text="@string/title_wellness_resources"
+                        android:textColor="@color/header_black"
+                        android:textSize="18sp"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/wellnessRv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                        app:layout_constraintTop_toBottomOf="@+id/wellnessText"
+                        app:spanCount="3"
+                        tools:itemCount="6"
+                        tools:layout_editor_absoluteX="9dp"
+                        tools:listitem="@layout/item_wellness_corner" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <TextView
+                    android:id="@+id/communiteText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:fontFamily="@font/medium"
+                    android:paddingStart="30dp"
+                    android:text="@string/title_community_center"
+                    android:textColor="@color/header_black"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/supportLayout" />
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/regular"
+                    android:maxLines="4"
+                    android:paddingStart="30dp"
+                    android:text="@string/title_community_desc"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toStartOf="@+id/panelIv"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/communiteText" />
+
+                <ImageView
+                    android:id="@+id/panelIv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="15dp"
+                    android:background="@mipmap/panel_team"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/communiteText" />
+
+                <TextView
+                    android:id="@+id/viewRequest"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="30dp"
+                    android:background="@drawable/rounded_shape_image"
+                    android:fontFamily="@font/regular"
+                    android:gravity="center"
+                    android:onClick="@{viewmodel::onCommuniCenterClicked}"
+                    android:paddingStart="25dp"
+                    android:paddingEnd="25dp"
+                    android:text="@string/title_view_request"
+                    android:textColor="@color/color_green"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/panelIv"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/supportLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/light_blue"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    app:layout_constraintTop_toBottomOf="@+id/pillBanner">
+
+                    <TextView
+                        android:id="@+id/support"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/medium"
+                        android:gravity="center"
+                        android:text="@string/title_support_donate"
+                        android:textColor="@color/header_black"
+                        android:textSize="18sp"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+
+                    <ImageView
+                        android:id="@+id/ambulance"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:src="@drawable/ambulance"
+                        app:layout_constraintEnd_toStartOf="@+id/donateBlood"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/requestBlood" />
+
+                    <TextView
+                        android:id="@+id/textView4"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="3dp"
+                        android:fontFamily="@font/regular"
+                        android:gravity="center"
+                        android:text="Ambulance \n Nearby"
+                        android:textColor="@color/header_black"
+                        android:textSize="10sp"
+                        app:layout_constraintEnd_toEndOf="@+id/ambulance"
+                        app:layout_constraintStart_toStartOf="@+id/ambulance"
+                        app:layout_constraintTop_toBottomOf="@+id/ambulance" />
+
+
+                    <ImageView
+                        android:id="@+id/donateBlood"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:onClick="@{viewmodel::onDonateBloodClicked}"
+                        android:src="@drawable/blood_donation"
+                        app:layout_constraintEnd_toStartOf="@+id/requestBlood"
+                        app:layout_constraintStart_toEndOf="@+id/ambulance"
+                        app:layout_constraintTop_toBottomOf="@+id/support" />
+
+                    <TextView
+                        android:id="@+id/textView2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="3dp"
+                        android:fontFamily="@font/regular"
+                        android:gravity="center"
+                        android:onClick="@{viewmodel::onDonateBloodClicked}"
+                        android:text="@string/title_donate_blood"
+                        android:textColor="@color/header_black"
+                        android:textSize="10sp"
+                        app:layout_constraintEnd_toEndOf="@+id/donateBlood"
+                        app:layout_constraintStart_toStartOf="@+id/donateBlood"
+                        app:layout_constraintTop_toBottomOf="@+id/donateBlood" />
+
+                    <ImageView
+                        android:id="@+id/requestBlood"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:onClick="@{viewmodel::onBloodRequestClicked}"
+                        android:src="@drawable/request_blood"
+                        app:layout_constraintEnd_toStartOf="@+id/donatemoney"
+                        app:layout_constraintStart_toEndOf="@+id/donateBlood"
+                        app:layout_constraintTop_toTopOf="@+id/donateBlood" />
+
+                    <TextView
+                        android:id="@+id/textView3"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="3dp"
+                        android:fontFamily="@font/regular"
+                        android:gravity="center"
+                        android:onClick="@{viewmodel::onBloodRequestClicked}"
+                        android:text="@string/title_request_blood"
+                        android:textColor="@color/header_black"
+                        android:textSize="10sp"
+                        app:layout_constraintEnd_toEndOf="@+id/requestBlood"
+                        app:layout_constraintStart_toStartOf="@+id/requestBlood"
+                        app:layout_constraintTop_toBottomOf="@+id/requestBlood" />
+
+
+                    <ImageView
+                        android:id="@+id/donatemoney"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="20dp"
+                        android:src="@drawable/donate_money"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/requestBlood"
+                        app:layout_constraintTop_toTopOf="@+id/ambulance" />
+
+
+                    <TextView
+                        android:id="@+id/textView5"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="3dp"
+                        android:fontFamily="@font/regular"
+                        android:gravity="center"
+                        android:text="Donate \n Money Now"
+                        android:textColor="@color/header_black"
+                        android:textSize="10sp"
+                        app:layout_constraintEnd_toEndOf="@+id/donatemoney"
+                        app:layout_constraintStart_toStartOf="@+id/donatemoney"
+                        app:layout_constraintTop_toBottomOf="@+id/donatemoney" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                <TextView
+                    android:id="@+id/catName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:fontFamily="@font/medium"
+                    android:gravity="center"
+                    android:text="@string/title_top_brands"
+                    android:textColor="@color/header_black"
+                    android:textSize="18sp"
+                    app:layout_constraintTop_toBottomOf="@+id/wellnessLayout" />
+
+                <androidx.viewpager.widget.ViewPager
+                    android:id="@+id/featureViewPager"
+                    android:layout_width="match_parent"
+                    android:layout_height="190dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@android:color/white"
+                    android:visibility="gone"
+                    app:layout_constraintTop_toBottomOf="@+id/catName" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/topBrandRv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@+id/catName" />
+
+                <com.healthtunnel.ui.utility.DotsIndicator
+                    android:id="@+id/dotsIndicator"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="6dp"
+                    app:dot_drawable="@drawable/ic_dot_darkgrey"
+                    app:dot_drawable_unselected="@drawable/ic_dot_lightgrey"
+                    app:dot_height="8dp"
+                    app:dot_margin="6dp"
+                    app:dot_width="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/featureViewPager" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+
+        <ProgressBar
+            android:id="@+id/progressBar2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{viewmodel.showProgressDialog ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

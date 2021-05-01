@@ -1,0 +1,590 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+            name="viewmodel"
+            type="com.healthtunnel.ui.blood.BloodViewModel" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/AppTheme.AppBarOverlay"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/colorPrimary"
+                app:navigationIcon="@drawable/ic_arrow_back"
+                app:popupTheme="@style/AppTheme.PopupOverlay"
+                app:titleTextColor="@color/header_black" />
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/appBar">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="20dp">
+
+                <TextView
+                    android:id="@+id/textBloodDonar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:fontFamily="@font/bold"
+                    android:text="@string/title_request_form"
+                    android:textColor="@color/header_black"
+                    android:textSize="18sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textBloodDonarDesc"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginEnd="30dp"
+                    android:fontFamily="@font/regular"
+                    android:gravity="center"
+                    android:text="@string/title_blood_req_desc"
+                    android:textColor="@color/text_black"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textBloodDonar" />
+
+
+                <TextView
+                    android:id="@+id/textyob"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="20dp"
+                    android:drawableLeft="@drawable/ic_person"
+                    android:drawablePadding="10dp"
+                    android:fontFamily="@font/regular"
+                    android:text="@string/titl_patient_name"
+                    android:textColor="@color/header_black"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toStartOf="@+id/textBloodDonarDesc"
+                    app:layout_constraintTop_toBottomOf="@+id/textBloodDonarDesc" />
+
+                <EditText
+                    android:id="@+id/tvFullName"
+                    style="@style/FormEditTextStyle"
+                    android:layout_marginStart="35dp"
+                    android:hint="@string/titl_full_name"
+                    android:imeOptions="actionNext"
+                    app:addTextChangedListener="@{viewmodel.getFullNme()}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/textyob"
+                    app:layout_constraintTop_toBottomOf="@+id/textyob" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0.5dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@color/divider"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/tvFullName"
+                    app:layout_constraintTop_toBottomOf="@+id/tvFullName" />
+
+                <TextView
+                    android:id="@+id/textBloodType"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:drawableLeft="@drawable/ic_people"
+                    android:drawablePadding="10dp"
+                    android:fontFamily="@font/regular"
+                    android:text="@string/titl_gender"
+                    android:textColor="@color/header_black"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toStartOf="@+id/textyob"
+                    app:layout_constraintTop_toBottomOf="@+id/tvFullName" />
+
+                <TextView
+                    style="@style/FormTextStyle"
+                    android:id="@+id/tvSelectGender"
+                    android:drawableRight="@drawable/down_arrow_24"
+                    android:onClick="@{viewmodel::onGenderClicked}"
+                    android:text="@{viewmodel.selectedGender}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/tvFullName"
+                    app:layout_constraintTop_toBottomOf="@+id/textBloodType" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0.5dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@color/divider"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/tvFullName"
+                    app:layout_constraintTop_toBottomOf="@+id/tvSelectGender" />
+
+                <TextView
+                    android:id="@+id/textBloodDonate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:drawableLeft="@drawable/ic_data_of_birth"
+                    android:drawablePadding="10dp"
+                    android:fontFamily="@font/regular"
+                    android:text="@string/titl_age"
+                    android:textColor="@color/header_black"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toStartOf="@+id/textyob"
+                    app:layout_constraintTop_toBottomOf="@+id/tvSelectGender" />
+
+                <EditText
+                    style="@style/FormEditTextStyle"
+                    android:id="@+id/tvSelectBloodDonate"
+                    android:background="@android:color/transparent"
+                    android:hint="@string/title_enter"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:maxLength="2"
+                    app:addTextChangedListener="@{viewmodel.getAge}"
+                    android:text="@{viewmodel.enteredAge}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/tvFullName"
+                    app:layout_constraintTop_toBottomOf="@+id/textBloodDonate" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0.5dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@color/divider"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/tvFullName"
+                    app:layout_constraintTop_toBottomOf="@+id/tvSelectBloodDonate" />
+
+                <TextView
+                    android:id="@+id/textCovid"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:drawableLeft="@drawable/ic_blood_type"
+                    android:drawablePadding="10dp"
+                    android:fontFamily="@font/regular"
+                    android:text="@string/titl_blood_type_required"
+                    android:textColor="@color/header_black"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toStartOf="@+id/textyob"
+                    app:layout_constraintTop_toBottomOf="@+id/tvSelectBloodDonate" />
+
+                <TextView
+                    style="@style/FormTextStyle"
+                    android:id="@+id/tvCovid"
+                    android:drawableRight="@drawable/down_arrow_24"
+                    android:onClick="@{viewmodel::onBloodRequiredClicked}"
+                    android:text="@{viewmodel.selectedBloodTypeRequired}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/tvFullName"
+                    app:layout_constraintTop_toBottomOf="@+id/textCovid" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0.5dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@color/divider"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/tvFullName"
+                    app:layout_constraintTop_toBottomOf="@+id/tvCovid" />
+
+                <TextView
+                    android:id="@+id/textPlasma"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:drawableLeft="@drawable/ic_schedule"
+                    android:drawablePadding="10dp"
+                    android:fontFamily="@font/regular"
+                    android:text="@string/titl_schedule"
+                    android:textColor="@color/header_black"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toStartOf="@+id/textyob"
+                    app:layout_constraintTop_toBottomOf="@+id/tvCovid" />
+
+                <TextView
+                    style="@style/FormTextStyle"
+                    android:id="@+id/tvPlasma"
+                    android:drawableRight="@drawable/down_arrow_24"
+                    android:onClick="@{viewmodel::onScheduleClicked}"
+                    android:text="@{viewmodel.selectedScheduleDate}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/tvFullName"
+                    app:layout_constraintTop_toBottomOf="@+id/textPlasma" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0.5dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@color/divider"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/tvFullName"
+                    app:layout_constraintTop_toBottomOf="@+id/tvPlasma" />
+
+                <TextView
+                    style="@style/FormTextStyle"
+                    android:id="@+id/tvtime"
+                    android:drawableRight="@drawable/down_arrow_24"
+                    android:onClick="@{viewmodel::onScheduleTimeClicked}"
+                    android:text="@{viewmodel.selectedScheduleTime}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/tvFullName"
+                    app:layout_constraintTop_toBottomOf="@+id/tvPlasma" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0.5dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@color/divider"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/tvFullName"
+                    app:layout_constraintTop_toBottomOf="@+id/tvtime" />
+
+                <TextView
+                    android:id="@+id/textLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:drawableLeft="@drawable/ic_place"
+                    android:drawablePadding="10dp"
+                    android:fontFamily="@font/regular"
+                    android:text="@string/titl_location_name"
+                    android:textColor="@color/header_black"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toStartOf="@+id/textyob"
+                    app:layout_constraintTop_toBottomOf="@+id/tvtime" />
+
+                <EditText
+                    style="@style/FormEditTextStyle"
+                    android:id="@+id/tvLocation"
+                    android:fontFamily="@font/regular"
+                    android:inputType="text"
+                    android:hint="@string/titl_area_town_name"
+                    app:addTextChangedListener="@{viewmodel.getAreaTown}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/tvFullName"
+                    app:layout_constraintTop_toBottomOf="@+id/textLocation" />
+
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0.5dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@color/divider"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/tvFullName"
+                    app:layout_constraintTop_toBottomOf="@+id/tvLocation" />
+
+                <TextView
+                    android:id="@+id/textreason"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:drawableLeft="@drawable/ic_medical_services_black"
+                    android:drawablePadding="10dp"
+                    android:fontFamily="@font/regular"
+                    android:text="@string/titl_blood_change_reason"
+                    android:textColor="@color/header_black"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toStartOf="@+id/textyob"
+                    app:layout_constraintTop_toBottomOf="@+id/tvLocation" />
+
+                <TextView
+                    style="@style/FormTextStyle"
+                    android:id="@+id/tvReason"
+                    android:drawableRight="@drawable/down_arrow_24"
+                    android:onClick="@{viewmodel::onBloodChangeReasonClicked}"
+                    android:text="@{viewmodel.selectedBloodRequestReason}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/tvFullName"
+                    app:layout_constraintTop_toBottomOf="@+id/textreason" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0.5dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@color/divider"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/tvFullName"
+                    app:layout_constraintTop_toBottomOf="@+id/tvReason" />
+
+                <TextView
+                    android:id="@+id/textrequested"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:drawableLeft="@drawable/ic_hotel"
+                    android:drawablePadding="10dp"
+                    android:fontFamily="@font/regular"
+                    android:text="@string/titl_blood_requested_for"
+                    android:textColor="@color/header_black"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toStartOf="@+id/textyob"
+                    app:layout_constraintTop_toBottomOf="@+id/tvReason" />
+
+                <TextView
+                    style="@style/FormTextStyle"
+                    android:id="@+id/tvRequested"
+                    android:drawableRight="@drawable/down_arrow_24"
+                    android:onClick="@{viewmodel::onBloodRequestedClicked}"
+                    android:text="@{viewmodel.selectedBloodRequestedFor}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/tvFullName"
+                    app:layout_constraintTop_toBottomOf="@+id/textrequested" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0.5dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@color/divider"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/tvFullName"
+                    app:layout_constraintTop_toBottomOf="@+id/tvRequested" />
+
+
+                <TextView
+                    android:id="@+id/textRelativeContact"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:drawableLeft="@drawable/ic_smartphone"
+                    android:drawablePadding="10dp"
+                    android:fontFamily="@font/regular"
+                    android:text="@string/titl_parents_contact"
+                    android:textColor="@color/header_black"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toStartOf="@+id/textyob"
+                    app:layout_constraintTop_toBottomOf="@+id/tvRequested" />
+
+                <EditText
+                    style="@style/FormEditTextStyle"
+                    android:id="@+id/tvRelativeContact"
+                    android:hint="@string/titl_enter_mobile"
+                    android:maxLength="10"
+                    android:inputType="number"
+                    app:addTextChangedListener="@{viewmodel.getRelativeContactNumber()}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/tvFullName"
+                    app:layout_constraintTop_toBottomOf="@+id/textRelativeContact" />
+
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0.5dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@color/divider"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/tvFullName"
+                    app:layout_constraintTop_toBottomOf="@+id/tvRelativeContact" />
+
+
+                <TextView
+                    android:id="@+id/textbloodReceiver"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:drawableLeft="@drawable/ic_airline_seat_flat"
+                    android:drawablePadding="10dp"
+                    android:fontFamily="@font/regular"
+                    android:text="@string/titl_blood_receiver_status"
+                    android:textColor="@color/header_black"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toStartOf="@+id/textyob"
+                    app:layout_constraintTop_toBottomOf="@+id/tvRelativeContact" />
+
+                <TextView
+                    style="@style/FormTextStyle"
+                    android:id="@+id/tvBloodReceiver"
+                    android:drawableRight="@drawable/down_arrow_24"
+                    android:onClick="@{viewmodel::onBloodReceiverClicked}"
+                    android:text="@{viewmodel.selectedBloodReceiver}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/tvFullName"
+                    app:layout_constraintTop_toBottomOf="@+id/textbloodReceiver" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0.5dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@color/divider"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/tvFullName"
+                    app:layout_constraintTop_toBottomOf="@+id/tvBloodReceiver" />
+
+
+                <TextView
+                    android:id="@+id/texturgency"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:drawableLeft="@drawable/ic_add_comment"
+                    android:drawablePadding="10dp"
+                    android:fontFamily="@font/regular"
+                    android:text="@string/titl_urgency_details"
+                    android:textColor="@color/header_black"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toStartOf="@+id/textyob"
+                    app:layout_constraintTop_toBottomOf="@+id/tvBloodReceiver" />
+
+                <EditText
+                    style="@style/FormEditTextStyle"
+                    android:id="@+id/tvUrgebcyDetails"
+                    android:layout_height="100dp"
+                    android:hint="@string/titl_enter_150_words"
+                    android:gravity="center_vertical|top"
+                    app:addTextChangedListener="@{viewmodel.getDonalDetails()}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/tvFullName"
+                    app:layout_constraintTop_toBottomOf="@+id/texturgency" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0.5dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@color/divider"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/tvSelectYear"
+                    app:layout_constraintTop_toBottomOf="@+id/tvUrgebcyDetails" />
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/uploadAttechment"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:background="@color/light_grey"
+                    android:padding="20dp"
+                    android:layout_marginTop="5dp"
+                    app:layout_constraintEnd_toEndOf="@+id/tvUrgebcyDetails"
+                    app:layout_constraintStart_toStartOf="@+id/tvUrgebcyDetails"
+                    app:layout_constraintTop_toBottomOf="@+id/tvUrgebcyDetails">
+
+                    <ImageView
+                        android:id="@+id/attach"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/ic_attach_file"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="20dp"
+                        android:drawableRight="@drawable/down_arrow_24"
+                        android:fontFamily="@font/regular"
+                        android:paddingBottom="5dp"
+                        android:text="@string/titl_upload_photo_patient"
+                        android:textColor="@color/color_green"
+                        android:textSize="14sp"
+                        app:layout_constraintStart_toEndOf="@+id/attach"
+                        app:layout_constraintTop_toTopOf="@+id/attach" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="20dp"
+                        android:drawableRight="@drawable/down_arrow_24"
+                        android:fontFamily="@font/regular"
+                        android:gravity="center_vertical"
+                        android:paddingBottom="5dp"
+                        android:text="@string/titl_upload_details"
+                        android:textColor="@color/text_grey"
+                        android:textSize="10sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/attach"
+                        app:layout_constraintTop_toBottomOf="@+id/attach" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <CheckBox
+                    android:id="@+id/termsConditionCB"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp"
+                    android:layout_marginEnd="20dp"
+                    android:fontFamily="@font/regular"
+                    android:gravity="center_vertical|top"
+                    android:paddingStart="10dp"
+                    android:text="@string/titl_blood_donation_terms_condition"
+                    android:textColor="@color/text_grey"
+                    android:textSize="10sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/textyob"
+                    app:layout_constraintTop_toBottomOf="@+id/uploadAttechment" />
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    android:alpha="@{viewmodel.isChecked() ? 1.0f : 0.5f}"
+                    android:background="@drawable/rounded_shape"
+                    android:clickable="@{viewmodel.isChecked() ? true : false}"
+                    android:fontFamily="@font/medium"
+                    android:onClick="@{viewmodel::onRequestSubmitClicked}"
+                    android:text="@string/action_submit"
+                    android:textColor="@android:color/white"
+                    app:layout_constraintTop_toBottomOf="@+id/termsConditionCB" />
+
+                <ProgressBar
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="@{viewmodel.showProgressDialog ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+
+        <LinearLayout
+            android:id="@+id/full_screen_dialog"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:visibility="gone"
+            android:background="@color/color_white">
+
+
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:elevation="10dp"
+                app:cardCornerRadius="8dp">
+
+                <ImageView
+                    android:id="@+id/fullScreenImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

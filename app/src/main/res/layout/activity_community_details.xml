@@ -1,0 +1,518 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+            name="viewmodel"
+            type="com.healthtunnel.ui.community_center.CommunityViewModel" />
+
+        <variable
+            name="model"
+            type="com.healthtunnel.data.model.CommunityDetailsResult" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color_white">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/AppTheme.AppBarOverlay"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/colorPrimary"
+                app:navigationIcon="@drawable/ic_arrow_back"
+                app:popupTheme="@style/AppTheme.PopupOverlay"
+                app:titleTextColor="@color/header_black" />
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/appBar">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <TextView
+                    android:id="@+id/dateTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/bold"
+                    android:textSize="18sp"
+                    android:text="@{`Requested `+model.scheduledDate+`,`+model.scheduledTime}"
+                    android:textColor="@color/header_black"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <Button
+                    android:id="@+id/closeRequest"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/color_green"
+                    android:fontFamily="@font/medium"
+                    android:text="@string/titl_close_request"
+                    android:textAllCaps="false"
+                    android:textColor="@color/color_white"
+                    android:textSize="16sp"
+                    android:visibility="@{viewmodel.clickedPosition == 2 ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintTop_toBottomOf="@+id/dateTime" />
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/topCV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    app:cardCornerRadius="4dp"
+                    app:cardUseCompatPadding="true"
+                    app:layout_constraintTop_toBottomOf="@+id/closeRequest">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="20dp">
+
+                        <ImageView
+                            android:id="@+id/icon_mobile"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="20dp"
+                            android:background="@drawable/ic_smartphone_red"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/mobileText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:fontFamily="@font/bold"
+                            android:text="@string/my_contact_number"
+                            android:textColor="@color/header_black"
+                            android:textSize="14sp"
+                            app:layout_constraintStart_toEndOf="@+id/icon_mobile"
+                            app:layout_constraintTop_toTopOf="@+id/icon_mobile" />
+
+                        <TextView
+                            android:id="@+id/mobile"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:fontFamily="@font/regular"
+                            android:text="@{model.patientContactNumber}"
+                            android:textColor="@color/header_black"
+                            android:textSize="12sp"
+                            app:layout_constraintStart_toEndOf="@+id/icon_mobile"
+                            app:layout_constraintTop_toBottomOf="@+id/mobileText" />
+
+                        <ImageView
+                            android:id="@+id/icon_blood_type"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:background="@drawable/ic_comunity_red"
+                            app:layout_constraintStart_toStartOf="@+id/icon_mobile"
+                            app:layout_constraintTop_toBottomOf="@+id/mobile" />
+
+                        <TextView
+                            android:id="@+id/bloodTypeText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:fontFamily="@font/bold"
+                            android:text="@string/titl_blood_type_required"
+                            android:textColor="@color/header_black"
+                            android:textSize="14sp"
+                            app:layout_constraintStart_toEndOf="@+id/icon_blood_type"
+                            app:layout_constraintTop_toTopOf="@+id/icon_blood_type" />
+
+                        <TextView
+                            android:id="@+id/bloodType"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:fontFamily="@font/regular"
+                            android:text="@{model.bloodGroup+`VE`}"
+                            android:textColor="@color/header_black"
+                            android:textSize="12sp"
+                            app:layout_constraintStart_toEndOf="@+id/icon_mobile"
+                            app:layout_constraintTop_toBottomOf="@+id/bloodTypeText" />
+
+                        <ImageView
+                            android:id="@+id/icon_reason"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:background="@drawable/ic_medical_services_red"
+                            app:layout_constraintStart_toStartOf="@+id/icon_mobile"
+                            app:layout_constraintTop_toBottomOf="@+id/bloodType" />
+
+                        <TextView
+                            android:id="@+id/reasonText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:fontFamily="@font/bold"
+                            android:text="@string/titl_blood_change_reason"
+                            android:textColor="@color/header_black"
+                            android:textSize="14sp"
+                            app:layout_constraintStart_toEndOf="@+id/icon_reason"
+                            app:layout_constraintTop_toTopOf="@+id/icon_reason" />
+
+                        <TextView
+                            android:id="@+id/reason"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:fontFamily="@font/regular"
+                            android:text="@{model.reasonForBloodRequest}"
+                            android:textColor="@color/header_black"
+                            android:textSize="12sp"
+                            app:layout_constraintStart_toEndOf="@+id/icon_mobile"
+                            app:layout_constraintTop_toBottomOf="@+id/reasonText" />
+
+                        <ImageView
+                            android:id="@+id/imgPatient"
+                            android:layout_width="match_parent"
+                            android:layout_height="150dp"
+                            android:layout_marginStart="15dp"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginEnd="15dp"
+                            android:alpha=".7"
+                            android:background="@mipmap/patient"
+                            app:layout_constraintTop_toBottomOf="@+id/reason" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="50dp"
+                            android:background="@drawable/rounded_corner_transparent"
+                            android:fontFamily="@font/regular"
+                            android:gravity="center"
+                            android:paddingStart="40dp"
+                            android:paddingEnd="40dp"
+                            android:text="@string/title_patient_picture"
+                            android:textColor="@color/color_white"
+                            android:textSize="14sp"
+                            app:layout_constraintBottom_toBottomOf="@+id/imgPatient"
+                            app:layout_constraintEnd_toEndOf="@+id/imgPatient"
+                            app:layout_constraintStart_toStartOf="@+id/imgPatient"
+                            app:layout_constraintTop_toTopOf="@+id/imgPatient" />
+
+
+                        <ImageView
+                            android:id="@+id/icon_location"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:background="@drawable/ic_place_red"
+                            app:layout_constraintStart_toStartOf="@+id/icon_mobile"
+                            app:layout_constraintTop_toBottomOf="@+id/imgPatient" />
+
+                        <TextView
+                            android:id="@+id/locationText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:fontFamily="@font/bold"
+                            android:text="@string/title_required_location"
+                            android:textColor="@color/header_black"
+                            android:textSize="14sp"
+                            app:layout_constraintStart_toEndOf="@+id/icon_reason"
+                            app:layout_constraintTop_toTopOf="@+id/icon_location" />
+
+                        <TextView
+                            android:id="@+id/location"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:fontFamily="@font/regular"
+                            android:text="@{model.locationName}"
+                            android:textColor="@color/header_black"
+                            android:textSize="12sp"
+                            app:layout_constraintStart_toEndOf="@+id/icon_mobile"
+                            app:layout_constraintTop_toBottomOf="@+id/locationText" />
+
+                        <ImageView
+                            android:id="@+id/icon_time"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:background="@drawable/ic_schedule_red"
+                            app:layout_constraintStart_toStartOf="@+id/icon_mobile"
+                            app:layout_constraintTop_toBottomOf="@+id/location" />
+
+                        <TextView
+                            android:id="@+id/timeText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:fontFamily="@font/bold"
+                            android:text="@string/title_required_date_time"
+                            android:textColor="@color/header_black"
+                            android:textSize="14sp"
+                            app:layout_constraintStart_toEndOf="@+id/icon_reason"
+                            app:layout_constraintTop_toTopOf="@+id/icon_time" />
+
+                        <TextView
+                            android:id="@+id/time"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:fontFamily="@font/regular"
+                            android:text="@{model.scheduledDate+`,`+model.scheduledTime}"
+                            android:textColor="@color/header_black"
+                            android:textSize="12sp"
+                            app:layout_constraintStart_toEndOf="@+id/icon_mobile"
+                            app:layout_constraintTop_toBottomOf="@+id/timeText" />
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/middleCV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    app:cardCornerRadius="4dp"
+                    app:cardUseCompatPadding="true"
+                    app:layout_constraintTop_toBottomOf="@+id/topCV">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="20dp">
+
+                        <TextView
+                            android:id="@+id/urgencyDetails"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/medium"
+                            android:text="@string/title_urgency_details"
+                            android:textColor="@color/header_black"
+                            android:textSize="14sp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:fontFamily="@font/regular"
+                            android:text="@{model.detailsOfUrgency}"
+                            android:textColor="@color/text_black"
+                            android:textSize="12sp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/urgencyDetails" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/bottomCV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    app:cardCornerRadius="4dp"
+                    app:cardUseCompatPadding="true"
+                    app:layout_constraintTop_toBottomOf="@+id/middleCV">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="20dp">
+
+                        <ImageView
+                            android:id="@+id/icon_patient"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="20dp"
+                            android:background="@drawable/ic_person_blue"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/patientText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:fontFamily="@font/bold"
+                            android:text="@string/my_patient_name"
+                            android:textColor="@color/header_black"
+                            android:textSize="14sp"
+                            app:layout_constraintStart_toEndOf="@+id/icon_patient"
+                            app:layout_constraintTop_toTopOf="@+id/icon_patient" />
+
+                        <TextView
+                            android:id="@+id/patient"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:fontFamily="@font/regular"
+                            android:text="@{model.userId.name}"
+                            android:textColor="@color/header_black"
+                            android:textSize="12sp"
+                            app:layout_constraintStart_toEndOf="@+id/icon_patient"
+                            app:layout_constraintTop_toBottomOf="@+id/patientText" />
+
+                        <ImageView
+                            android:id="@+id/icon_gender"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="20dp"
+                            android:background="@drawable/ic_people_blue"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/patient" />
+
+                        <TextView
+                            android:id="@+id/genderText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:fontFamily="@font/bold"
+                            android:text="@string/titl_gender"
+                            android:textColor="@color/header_black"
+                            android:textSize="14sp"
+                            app:layout_constraintStart_toEndOf="@+id/icon_patient"
+                            app:layout_constraintTop_toTopOf="@+id/icon_gender" />
+
+                        <TextView
+                            android:id="@+id/gender"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:fontFamily="@font/regular"
+                            android:text="@{model.userId.gender}"
+                            android:textColor="@color/header_black"
+                            android:textSize="12sp"
+                            app:layout_constraintStart_toEndOf="@+id/icon_patient"
+                            app:layout_constraintTop_toBottomOf="@+id/genderText" />
+
+
+                        <ImageView
+                            android:id="@+id/icon_age"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="20dp"
+                            android:background="@drawable/ic_timelapse_blue"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/gender" />
+
+                        <TextView
+                            android:id="@+id/ageText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:fontFamily="@font/bold"
+                            android:text="@string/titl_age"
+                            android:textColor="@color/header_black"
+                            android:textSize="14sp"
+                            app:layout_constraintStart_toEndOf="@+id/icon_patient"
+                            app:layout_constraintTop_toTopOf="@+id/icon_age" />
+
+                        <TextView
+                            android:id="@+id/age"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:fontFamily="@font/regular"
+                            android:text="@{model.age}"
+                            android:textColor="@color/header_black"
+                            android:textSize="12sp"
+                            app:layout_constraintStart_toEndOf="@+id/icon_patient"
+                            app:layout_constraintTop_toBottomOf="@+id/ageText" />
+
+                        <ImageView
+                            android:id="@+id/icon_blood"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="20dp"
+                            android:background="@drawable/ic_people_blue"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/age" />
+
+                        <TextView
+                            android:id="@+id/bloodText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:fontFamily="@font/bold"
+                            android:text="@string/titl_blood_requested_for"
+                            android:textColor="@color/header_black"
+                            android:textSize="14sp"
+                            app:layout_constraintStart_toEndOf="@+id/icon_patient"
+                            app:layout_constraintTop_toTopOf="@+id/icon_blood" />
+
+                        <TextView
+                            android:id="@+id/blood"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:fontFamily="@font/regular"
+                            android:text="@{model.bloodRequestedFor}"
+                            android:textColor="@color/header_black"
+                            android:textSize="12sp"
+                            app:layout_constraintStart_toEndOf="@+id/icon_patient"
+                            app:layout_constraintTop_toBottomOf="@+id/bloodText" />
+
+
+                        <ImageView
+                            android:id="@+id/icon_status"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="20dp"
+                            android:background="@drawable/ic_airline_blue"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/blood" />
+
+                        <TextView
+                            android:id="@+id/statusText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:fontFamily="@font/bold"
+                            android:text="@string/titl_blood_receiver_status"
+                            android:textColor="@color/header_black"
+                            android:textSize="14sp"
+                            app:layout_constraintStart_toEndOf="@+id/icon_patient"
+                            app:layout_constraintTop_toTopOf="@+id/icon_status" />
+
+                        <TextView
+                            android:id="@+id/status"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:fontFamily="@font/regular"
+                            android:text="@{model.statusOfPatient}"
+                            android:textColor="@color/header_black"
+                            android:textSize="12sp"
+                            app:layout_constraintStart_toEndOf="@+id/icon_patient"
+                            app:layout_constraintTop_toBottomOf="@+id/statusText" />
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.cardview.widget.CardView>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
+

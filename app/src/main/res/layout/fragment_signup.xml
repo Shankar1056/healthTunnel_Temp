@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewmodel"
+            type="com.healthtunnel.ui.auth.AuthViewModel" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/skipTop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/medium"
+            android:text="@string/action_skip_now"
+            android:textColor="@color/skip_color"
+            android:textSize="16dp"
+            android:onClick="@{viewmodel::doSkip}"
+            android:drawableRight="@drawable/ic_right_arrow_blue"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:padding="10dp"
+            android:layout_marginTop="10dp"/>
+
+        <TextView
+            android:id="@+id/textalmost"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/medium"
+            android:text="@string/title_almost_there"
+            android:textColor="@color/header_black"
+            android:textSize="25sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/skipTop" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/text_input_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="30dp"
+            android:hint="@string/my_full_name"
+            app:hintTextColor="@color/text_grey"
+            app:layout_constraintTop_toBottomOf="@+id/textalmost">
+
+            <EditText
+                android:id="@+id/editTextName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/medium"
+                android:textColor="@color/text_black"
+                app:addTextChangedListener="@{viewmodel.getName()}" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/text_input_layout_email"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:hint="@string/my_full_email"
+            app:hintTextColor="@color/text_grey"
+            app:layout_constraintEnd_toEndOf="@+id/text_input_name"
+            app:layout_constraintStart_toStartOf="@+id/text_input_name"
+            app:layout_constraintTop_toBottomOf="@+id/text_input_name">
+
+            <EditText
+                android:id="@+id/editTextEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/medium"
+                android:inputType="textEmailAddress"
+                android:textColor="@color/text_black"
+                app:addTextChangedListener="@{viewmodel.getEmail()}" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/text_input_layout_gender"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:hint="@string/my_gender"
+            app:hintTextColor="@color/text_grey"
+            app:layout_constraintEnd_toEndOf="@+id/text_input_name"
+            app:layout_constraintStart_toStartOf="@+id/text_input_name"
+            app:layout_constraintTop_toBottomOf="@+id/text_input_layout_email">
+
+            <EditText
+                android:id="@+id/editTextGender"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableRight="@drawable/down_arrow_24"
+                android:editable="false"
+                android:focusable="false"
+                android:fontFamily="@font/medium"
+                android:onClick="@{viewmodel::selectGender}"
+                android:text="@{viewmodel.selectedGender}"
+                android:textColor="@color/text_black"
+                app:addTextChangedListener="@{viewmodel.getGender()}" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/emailInstruction"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@+id/text_input_layout_gender"
+            app:layout_constraintEnd_toEndOf="@+id/text_input_layout_gender"
+            app:layout_constraintTop_toBottomOf="@+id/text_input_layout_gender"
+            android:text="@string/email_instruction"
+            android:fontFamily="@font/medium"
+            android:textSize="12sp"
+            android:gravity="center"
+            android:layout_marginTop="15dp"
+            android:textColor="@color/text_grey"/>
+
+        <Button
+            android:id="@+id/skip"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/rounded_shape_skip"
+            android:onClick="@{viewmodel::doSkip}"
+            android:text="@string/action_skip_now"
+            android:textAllCaps="false"
+            android:textColor="@color/text_grey"
+            app:layout_constraintBottom_toTopOf="@+id/submitBtn"
+            tools:layout_editor_absoluteX="20dp" />
+
+        <Button
+            android:id="@+id/submitBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/rounded_shape"
+            android:onClick="@{viewmodel::doSignUp}"
+            android:text="@string/action_submit"
+            android:textColor="@android:color/white"
+            android:layout_marginBottom="40dp"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{viewmodel.showProgressDialog ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

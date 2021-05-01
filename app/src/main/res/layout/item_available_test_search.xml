@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="15dp">
+
+
+    <TextView
+        android:id="@+id/labName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:fontFamily="@font/medium"
+        android:textColor="@color/header_black"
+        app:layout_constraintEnd_toStartOf="@+id/checkBox"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/labAddress"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:fontFamily="@font/regular"
+        android:textColor="@color/text_grey"
+        android:maxLines="1"
+        app:layout_constraintEnd_toStartOf="@+id/checkBox"
+        app:layout_constraintStart_toStartOf="@+id/labName"
+        app:layout_constraintTop_toBottomOf="@+id/labName" />
+
+    <TextView
+        android:id="@+id/labAddressDetails"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:fontFamily="@font/regular"
+        android:textColor="@color/text_grey"
+        android:visibility="gone"
+        app:layout_constraintEnd_toStartOf="@+id/viewDetails"
+        app:layout_constraintStart_toStartOf="@+id/labName"
+        app:layout_constraintTop_toBottomOf="@+id/labName" />
+
+    <CheckBox
+        android:id="@+id/checkBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/viewDetails"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/regular"
+        android:text="@string/title_view_details"
+        android:textColor="@color/color_green"
+        android:textSize="12sp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="@+id/checkBox"
+        app:layout_constraintTop_toBottomOf="@+id/checkBox" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginTop="55dp"
+        android:background="@color/divider"
+        app:layout_constraintTop_toBottomOf="@+id/labAddressDetails" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/topbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:navigationIcon="@drawable/ic_arrow_back"
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            app:titleTextColor="@color/header_black">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/locationCL"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/textLocation"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="15dp"
+                    android:fontFamily="@font/medium"
+                    android:gravity="center_vertical"
+                    android:text="@string/title_filter"
+                    android:textColor="@color/header_black"
+                    app:layout_constraintEnd_toStartOf="@+id/apply"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <TextView
+                    android:id="@+id/apply"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="20dp"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="20dp"
+                    android:paddingEnd="20dp"
+                    android:text="@string/title_apply"
+                    android:textColor="@color/color_green"
+                    android:textSize="15sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </androidx.appcompat.widget.Toolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight=".7"
+            android:orientation="vertical"
+            android:padding="15dp">
+
+            <TextView
+                android:id="@+id/cat"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:drawableRight="@drawable/ic_filter_arrow"
+                android:fontFamily="@font/medium"
+                android:gravity="center_vertical"
+                android:text="@string/title_categry"
+                android:textColor="@color/header_black"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/prod"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:fontFamily="@font/medium"
+                android:gravity="center_vertical"
+                android:text="@string/title_product"
+                android:textColor="@color/header_black"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/catProdRV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_weight=".3"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/ll"
+            app:layout_constraintTop_toBottomOf="@+id/ll" />
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center" />
+
+</LinearLayout>

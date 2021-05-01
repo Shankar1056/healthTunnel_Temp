@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/couponText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/medium"
+        android:padding="20dp"
+        android:text="@string/title_coupon_code"
+        android:textColor="@color/header_black"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/couponCode"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:fontFamily="@font/regular"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:text="@string/title_coupon_code"
+        android:textColor="@color/text_grey"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toStartOf="@+id/couponCodeButton"
+        app:layout_constraintStart_toEndOf="@+id/couponText"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/couponCodeButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/rounded_shape"
+        android:fontFamily="@font/bold"
+        android:text="@string/title_copy_coupon"
+        android:textColor="@color/color_white"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/couponText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/couponText" />
+
+    <TextView
+        android:id="@+id/descriptionText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/medium"
+        android:paddingLeft="20dp"
+        android:text="@string/title_coupon_details"
+        android:textColor="@color/header_black"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/couponCode" />
+
+    <TextView
+        android:id="@+id/description"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:fontFamily="@font/regular"
+        android:text="@string/title_coupon_code"
+        android:textColor="@color/text_grey"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/couponCode"
+        app:layout_constraintTop_toTopOf="@+id/descriptionText" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/divider"
+        app:layout_constraintTop_toBottomOf="@+id/description" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

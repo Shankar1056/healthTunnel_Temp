@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.healthtunnel">
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+
+
+    <application
+        android:name="com.healthtunnel.ui.utility.AppController"
+        android:allowBackup="true"
+        android:icon="@drawable/logo_health_lunnel"
+        android:label="@string/app_name"
+        android:roundIcon="@drawable/logo_health_lunnel"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true"
+        android:hardwareAccelerated="true">
+        <activity
+            android:name=".ui.SplashScreen"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ui.auth.AuthActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name="com.healthtunnel.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".ui.blood.BloodDonationActivity"
+            android:label="@string/titl_blood_donate"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".ui.blood.BloodRequestAcrivity"
+            android:label="@string/titl_blood_request"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".ui.caterorywithtab.ServiceCategoryActivity"
+            android:label="@string/titl_blood_request"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+
+        <activity
+            android:name=".ui.webview.WebViewActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".ui.community_center.CommunityCenteractivity"
+            android:label="@string/title_community_center"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".ui.community_center.CommunityDetailsActivity"
+            android:label="@string/title_blood_request"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".ui.HomeCategoryListActivity"
+            android:label="@string/title_popular_serchces"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".ui.wellnesscorner.WellnessCornerActivity"
+            android:label="@string/title_wellness_corner"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".ui.wellnesscorner.WellnessCornerDetailsActivity"
+            android:label="@string/title_wellness_corner"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name="com.healthtunnel.ui.location.LocationActivityNew"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".ui.donatemoney.DOnateMoneyActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".ui.ecom.BusinessSalesListActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".ui.ecom.BusinessListDetailsActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".ui.ecom.BusinessShopDetails"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".ui.staticform.AvailableTestSearch"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:label="@string/title_search_lab"/>
+
+        <activity
+            android:name=".ui.staticform.FormTypeActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
+        <activity
+            android:name=".ui.ecom.MyCartActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:label="@string/title_my_cart" />
+
+        <activity
+            android:name=".ui.coupon.CouponListActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:label="@string/title_coupon" />
+
+        <activity
+            android:name=".ui.address.AddAddressActivity"
+            android:label="@string/title_addaddress"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".ui.address.AddressListActivity"
+            android:label="@string/title_address_list"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".ui.address.PaymentSummary"
+            android:label="@string/title_payment_summary"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".ui.profile.ProfileActivity"
+            android:label="@string/title_profile"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".ui.ecom.FilterActivity"
+            android:label="@string/title_filter"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".ui.static_content.PrivacyPolicyActivity"
+            android:label=""
+            android:theme="@style/AppTheme.NoActionBar" />
+
+
+        <!-- Remainder module -->
+      <!--  <activity
+            android:name="com.remainder.ui.remainder_list.RemainderListActivity"
+            android:label=""
+            android:theme="@style/AppTheme.NoActionBar" />
+-->
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+
+        <meta-data
+            android:name="com.razorpay.ApiKey"
+            android:value="rzp_live_T6gGsTQiL5Wava" />
+
+        <meta-data android:name="android.webkit.WebView.EnableSafeBrowsing"
+            android:value="true" />
+
+
+
+        <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
+
+    </application>
+
+</manifest>
