@@ -1,6 +1,7 @@
 package com.healthtunnel.ui.caterorywithtab
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -14,6 +15,8 @@ import com.healthtunnel.ui.utility.ClsGeneral
 import com.healthtunnel.ui.utility.Constant
 import com.bumptech.glide.Glide
 import com.google.android.material.tabs.TabLayout
+import com.healthtunnel.ui.fcm.MyFirebaseMessagingService
+import com.healthtunnel.ui.fcm.NotificationModel
 import kotlinx.android.synthetic.main.activity_service_category.*
 import kotlinx.android.synthetic.main.fragment_categorylisting.tabs
 
@@ -23,11 +26,15 @@ class ServiceCategoryActivity : AppCompatActivity() {
     private var viewPagerAdapter: ServicesViewPagerAdapter? = null
     private lateinit var viewpager: ViewPager
     private var totalSize: Int = 0
+    var notificationModel: NotificationModel? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_service_category)
         setSupportActionBar(toolbar)
+
+        handleDeepLinking()
+
         location.text = ClsGeneral.getPreferences(Constant.LOCATION)
 
 
@@ -112,9 +119,13 @@ class ServiceCategoryActivity : AppCompatActivity() {
                     )
                 }
             }
-
         })
     }
-
-
+    private fun handleDeepLinking() {
+        if (intent.hasExtra(MyFirebaseMessagingService.NOTIFICATION_MODEL) &&
+            (intent.getSerializableExtra(MyFirebaseMessagingService.NOTIFICATION_MODEL) != null)) {
+            notificationModel = intent.getSerializableExtra(MyFirebaseMessagingService.NOTIFICATION_MODEL) as NotificationModel
+            Log.d("ServiceCategoryActivity", notificationModel.toString())
+        }
+    }
 }

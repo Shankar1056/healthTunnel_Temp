@@ -2,6 +2,9 @@ package com.healthtunnel.ui.auth
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
+import android.view.Window
+import android.view.WindowManager
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -14,10 +17,12 @@ import com.healthtunnel.ui.auth.fragment.SignUpFragment
 import com.healthtunnel.ui.auth.fragment.VerifyOTPFragment
 
 class AuthActivity : AppCompatActivity() {
-    //var smsVerifyCatcher: SmsVerifyCatcher? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        requestWindowFeature(Window.FEATURE_NO_TITLE)
+        this.window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
+
         setContentView(R.layout.activity_auth)
 
         val viewModel: AuthViewModel by viewModels()
@@ -31,14 +36,6 @@ class AuthActivity : AppCompatActivity() {
                 AuthViewModel.ButtonClickedOperation.HOME -> goToHomeScreen()
             }
         })
-
-        /* smsVerifyCatcher = SmsVerifyCatcher(
-             this
-         ) { message ->
-             viewModel.parseCode(message)
-
-         }*/
-
     }
 
     private fun goToHomeScreen() {
@@ -52,29 +49,4 @@ class AuthActivity : AppCompatActivity() {
             .addToBackStack(null)
         transaction.commit()
     }
-
-    override fun onStart() {
-        super.onStart()
-        //smsVerifyCatcher!!.onStart()
-    }
-
-    override fun onStop() {
-        super.onStop()
-        //smsVerifyCatcher!!.onStop()
-    }
-
-    /*override fun onRequestPermissionsResult(
-        requestCode: Int,
-       permissions: Array<String>,
-        grantResults: IntArray
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        smsVerifyCatcher!!.onRequestPermissionsResult(requestCode, permissions, grantResults)
-    }*/
-
-
-    /* override fun onActivityResult(requestCode: Int, resultCode: Int, @Nullable data: Intent?) {
-         super.onActivityResult(requestCode, resultCode, data)
-         TruecallerSDK.getInstance().onActivityResultObtained(this, resultCode, data)
-     }*/
 }

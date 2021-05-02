@@ -34,7 +34,7 @@ class BusinessSalesListActivity : AppCompatActivity() {
 
         setSupportActionBar(toolbar)
         location.text = ClsGeneral.getPreferences(Constant.LOCATION)
-        viewModel.getBusinessSalesList(intent.getStringExtra("id"), "")
+        viewModel.getBusinessSalesList(intent.getStringExtra("parentId"), "")
 
         viewModel.businessSalesresponse.observe(this, Observer {
             businessRV.adapter =

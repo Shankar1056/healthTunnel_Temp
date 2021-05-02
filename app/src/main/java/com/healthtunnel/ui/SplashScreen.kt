@@ -1,59 +1,55 @@
 package com.healthtunnel.ui
 
 import android.content.Intent
-import android.content.pm.PackageInfo
-import android.content.pm.PackageManager
 import android.os.Bundle
 import android.os.Handler
-import android.util.Base64
 import android.util.Log
+import android.view.View
+import android.view.Window
+import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import com.healthtunnel.MainActivity
 import com.healthtunnel.R
 import com.healthtunnel.ui.auth.AuthActivity
+import com.healthtunnel.ui.fcm.MyFirebaseMessagingService
+import com.healthtunnel.ui.fcm.NotificationModel
 import com.healthtunnel.ui.utility.ClsGeneral
 import com.healthtunnel.ui.utility.Constant
-import java.security.MessageDigest
-import java.security.NoSuchAlgorithmException
 
 class SplashScreen : AppCompatActivity() {
-
+    private var notificationModel: NotificationModel? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        requestWindowFeature(Window.FEATURE_NO_TITLE)
+        this.window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
+
         setContentView(R.layout.activity_splash)
 
+        handleDeepLinking()
 
-       /* val info: PackageInfo
-        try {
-            info = packageManager.getPackageInfo("com.healthtunnel", PackageManager.GET_SIGNATURES)
-            for (signature in info.signatures) {
-                var md: MessageDigest
-                md = MessageDigest.getInstance("SHA")
-                md.update(signature.toByteArray())
-                val something: String = String(Base64.encode(md.digest(), 0))
-                //String something = new String(Base64.encodeBytes(md.digest()));
-                Log.e("hash key", something)
-            }
-        } catch (e1: PackageManager.NameNotFoundException) {
-            Log.e("name not found", e1.toString())
-        } catch (e: NoSuchAlgorithmException) {
-            Log.e("no such an algorithm", e.toString())
-        } catch (e: Exception) {
-            Log.e("exception", e.toString())
-        }*/
-
-
-        Handler().postDelayed(Runnable {
+        val mService = MyFirebaseMessagingService()
+        mService.composeNotification(this, null)
+        Handler().postDelayed({
             if (ClsGeneral.getPreferences(Constant.EMAIL).isNullOrEmpty()) {
                 startActivity(Intent(this, AuthActivity::class.java))
             } else {
-                startActivity(Intent(this, MainActivity::class.java))
-//                startActivity(Intent(this, RemainderListActivity::class.java))
+                startActivity(
+                    Intent(this, MainActivity::class.java)
+                        .putExtra(MyFirebaseMessagingService.NOTIFICATION_MODEL, notificationModel)
+                )
             }
 
             finish()
         }, 3000)
+    }
 
-
+    private fun handleDeepLinking() {
+        if (intent.hasExtra(MyFirebaseMessagingService.NOTIFICATION_MODEL) &&
+            (intent.getSerializableExtra(MyFirebaseMessagingService.NOTIFICATION_MODEL) != null)
+        ) {
+            notificationModel =
+                intent.getSerializableExtra(MyFirebaseMessagingService.NOTIFICATION_MODEL) as NotificationModel
+            Log.d("Splash", notificationModel.toString())
+        }
     }
 }

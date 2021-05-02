@@ -5,6 +5,7 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.webkit.JavascriptInterface
 import android.webkit.WebSettings
@@ -22,6 +23,7 @@ class WebViewActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_web_view)
 
+        Log.d("WebView", "Hello Health Tunnel")
         setSupportActionBar(toolbar)
         val t = intent.getStringExtra("title")
         if (t.isNullOrEmpty()) {

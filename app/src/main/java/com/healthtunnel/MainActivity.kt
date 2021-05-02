@@ -4,6 +4,7 @@ import android.Manifest
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.TextView
 import androidx.activity.viewModels
@@ -25,6 +26,8 @@ import com.healthtunnel.ui.blood.BloodDonationActivity
 import com.healthtunnel.ui.blood.BloodRequestAcrivity
 import com.healthtunnel.ui.caterorywithtab.ServiceCategoryActivity
 import com.healthtunnel.ui.community_center.CommunityCenteractivity
+import com.healthtunnel.ui.fcm.MyFirebaseMessagingService
+import com.healthtunnel.ui.fcm.NotificationModel
 import com.healthtunnel.ui.home.HomeViewModel
 import com.healthtunnel.ui.location.LocationActivityNew
 import com.healthtunnel.ui.profile.ProfileActivity
@@ -42,7 +45,7 @@ class MainActivity : AppCompatActivity() {
     private var whatClicked: Int? =
         null //1. BloodDonate, 2. BloodRequest, 3. PillRemainder, 4. CommunityCenter
     val viewModel: HomeViewModel by viewModels()
-
+    var notificationModel: NotificationModel? = null
     private val locationPermissions = arrayOf(
         Manifest.permission.ACCESS_FINE_LOCATION,
         Manifest.permission.ACCESS_COARSE_LOCATION
@@ -52,6 +55,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        handleDeepLinking()
 
         checkGPSOnOff()
         getUpdatedLocation()
@@ -281,6 +286,14 @@ class MainActivity : AppCompatActivity() {
 
         //Get User TueCaller Profile
 //        TruecallerSDK.getInstance().getUserProfile(this@MainActivity)
+    }
+
+    private fun handleDeepLinking() {
+        if (intent.hasExtra(MyFirebaseMessagingService.NOTIFICATION_MODEL) &&
+            (intent.getSerializableExtra(MyFirebaseMessagingService.NOTIFICATION_MODEL) != null)) {
+            notificationModel = intent.getSerializableExtra(MyFirebaseMessagingService.NOTIFICATION_MODEL) as NotificationModel
+            Log.d("MainActivity", notificationModel.toString())
+        }
     }
 
     private fun getStandAloneImage() {

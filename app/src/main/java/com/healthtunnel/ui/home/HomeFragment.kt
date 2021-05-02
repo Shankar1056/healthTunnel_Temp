@@ -2,6 +2,7 @@ package com.healthtunnel.ui.home
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,12 +12,15 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.healthtunnel.MainActivity
 import com.healthtunnel.R
 import com.healthtunnel.data.model.CatResult
 import com.healthtunnel.databinding.FragmentHomeBinding
 import com.healthtunnel.ui.caterorywithtab.ServiceCategoryActivity
 import com.healthtunnel.ui.donatemoney.DOnateMoneyActivity
 import com.healthtunnel.ui.ecom.BusinessSalesListActivity
+import com.healthtunnel.ui.fcm.MyFirebaseMessagingService
+import com.healthtunnel.ui.fcm.NotificationModel
 import com.healthtunnel.ui.home.adapter.HomeCategoryAdapter
 import com.healthtunnel.ui.home.adapter.HomeCategoryAdapterHor
 import com.healthtunnel.ui.home.adapter.TOpBrandAdapter
@@ -25,6 +29,7 @@ import com.healthtunnel.ui.utility.Constant
 import com.healthtunnel.ui.webview.WebViewActivity
 import com.healthtunnel.ui.wellnesscorner.WellnessCornerActivity
 import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.android.synthetic.main.image_item.*
 
 class HomeFragment : Fragment() {
 
@@ -53,6 +58,7 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        handleDeepLinking()
         viewModel.getPopularCat()
         viewModel.getWellnessArticle()
         viewModel.getBanners(1)
@@ -89,16 +95,16 @@ class HomeFragment : Fragment() {
                     it.remove(data)
                 }*/
 
-               /* if (data.name == resources.getString(R.string.title_medical_second_opinion)) {
-                    medicalSecondOpinionId = data._id
-                    medicalSecondOpinionExImage = data.explanatory_image
-                    Constant.MEDICLSECONDOPINOIN_ID = data._id
-                    it.remove(data)
-                }*/
+                /* if (data.name == resources.getString(R.string.title_medical_second_opinion)) {
+                     medicalSecondOpinionId = data._id
+                     medicalSecondOpinionExImage = data.explanatory_image
+                     Constant.MEDICLSECONDOPINOIN_ID = data._id
+                     it.remove(data)
+                 }*/
             }
             val first6 = ArrayList<CatResult>()
             val last6 = ArrayList<CatResult>()
-            if (it.size>5) {
+            if (it.size > 5) {
                 for (i in 0 until 6) {
                     first6.add(it[i])
                 }
@@ -106,41 +112,59 @@ class HomeFragment : Fragment() {
                 first6.addAll(it)
             }
 
-            if (it.size>6) {
+            if (it.size > 6) {
                 for (i in 6 until it.size) {
                     last6.add(it[i])
                 }
             }
 
 
-            popularCatRvHor.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
-            popularCatRvHor2.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
+            popularCatRvHor.layoutManager =
+                LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
+            popularCatRvHor2.layoutManager =
+                LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
 
             popularCatRv.adapter = HomeCategoryAdapter(first6, activity, object :
                 HomeCategoryAdapter.OnItemClickListener {
                 override fun onClick(pos: Int) {
-                    checkAndSwitchActivity(first6[pos].workFlowType, first6[pos]._id, first6[pos].explanatory_image)
+                    checkAndSwitchActivity(
+                        first6[pos].workFlowType,
+                        first6[pos]._id,
+                        first6[pos].explanatory_image
+                    )
                 }
             })
 
             popularCatRvHor.adapter = HomeCategoryAdapterHor(first6, activity, object :
                 HomeCategoryAdapterHor.OnItemClickListener {
                 override fun onClick(pos: Int) {
-                    checkAndSwitchActivity(first6[pos].workFlowType, first6[pos]._id, first6[pos].explanatory_image)
+                    checkAndSwitchActivity(
+                        first6[pos].workFlowType,
+                        first6[pos]._id,
+                        first6[pos].explanatory_image
+                    )
                 }
             })
 
             popularCatRv2.adapter = HomeCategoryAdapter(last6, activity, object :
                 HomeCategoryAdapter.OnItemClickListener {
                 override fun onClick(pos: Int) {
-                    checkAndSwitchActivity(last6[pos].workFlowType, last6[pos]._id, last6[pos].explanatory_image)
+                    checkAndSwitchActivity(
+                        last6[pos].workFlowType,
+                        last6[pos]._id,
+                        last6[pos].explanatory_image
+                    )
                 }
             })
 
             popularCatRvHor2.adapter = HomeCategoryAdapterHor(last6, activity, object :
                 HomeCategoryAdapterHor.OnItemClickListener {
                 override fun onClick(pos: Int) {
-                    checkAndSwitchActivity(last6[pos].workFlowType, last6[pos]._id, last6[pos].explanatory_image)
+                    checkAndSwitchActivity(
+                        last6[pos].workFlowType,
+                        last6[pos]._id,
+                        last6[pos].explanatory_image
+                    )
                 }
             })
 
@@ -274,23 +298,35 @@ class HomeFragment : Fragment() {
 
     }
 
-    private fun checkAndSwitchActivity(workFlowType: String, _id: String, explanatoryImage: String) {
-        if (workFlowType == resources.getString(R.string.sales_work_flow_type)) {
-            startActivity(
-                Intent(activity, BusinessSalesListActivity::class.java)
-                    .putExtra("id", _id)
-                    .putExtra("explanatory_image", explanatoryImage)
-            )
+    private fun checkAndSwitchActivity(
+        workFlowType: String,
+        _id: String,
+        explanatoryImage: String
+    ) {
+        val intent: Intent = if (workFlowType == resources.getString(R.string.sales_work_flow_type)) {
+            Intent(activity, BusinessSalesListActivity::class.java)
         } else {
-            startActivity(
-                Intent(
-                    activity,
-                    ServiceCategoryActivity::class.java
-                )
-                    .putExtra("parentId", _id)
-                    .putExtra("explanatory_image", explanatoryImage)
-            )
+            Intent(activity, ServiceCategoryActivity::class.java)
+        }
+
+        val model = (activity as MainActivity).notificationModel
+        val isFromNotification = ((model != null) && (model.isNotification!!))
+        if (isFromNotification) {
+            intent.putExtra("parentId", model?.categoryId)
+            intent.putExtra("explanatory_image", model?.explanatoryImageUrl)
+            intent.putExtra(MyFirebaseMessagingService.NOTIFICATION_MODEL, model)
+            (activity as MainActivity).notificationModel = null
+        } else {
+            intent.putExtra("parentId", _id)
+            intent.putExtra("explanatory_image", explanatoryImage)
+        }
+        startActivity(intent)
+    }
+    private fun handleDeepLinking() {
+        val model = (activity as MainActivity).notificationModel
+        if ((model != null) && (model.isNotification!!)) {
+            Log.d("HomeFragment", model.toString())
+            checkAndSwitchActivity("TBD", model.categoryId.toString(), model.explanatoryImageUrl.toString())
         }
     }
-
 }

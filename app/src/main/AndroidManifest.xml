@@ -9,17 +9,16 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
 
-
     <application
         android:name="com.healthtunnel.ui.utility.AppController"
         android:allowBackup="true"
+        android:hardwareAccelerated="true"
         android:icon="@drawable/logo_health_lunnel"
         android:label="@string/app_name"
         android:roundIcon="@drawable/logo_health_lunnel"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:usesCleartextTraffic="true"
-        android:hardwareAccelerated="true">
+        android:usesCleartextTraffic="true">
         <activity
             android:name=".ui.SplashScreen"
             android:label="@string/app_name"
@@ -105,22 +104,22 @@
 
         <activity
             android:name=".ui.staticform.AvailableTestSearch"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:label="@string/title_search_lab"/>
+            android:label="@string/title_search_lab"
+            android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
             android:name=".ui.staticform.FormTypeActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
             android:name=".ui.ecom.MyCartActivity"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:label="@string/title_my_cart" />
+            android:label="@string/title_my_cart"
+            android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
             android:name=".ui.coupon.CouponListActivity"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:label="@string/title_coupon" />
+            android:label="@string/title_coupon"
+            android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
             android:name=".ui.address.AddAddressActivity"
@@ -154,11 +153,11 @@
 
 
         <!-- Remainder module -->
-      <!--  <activity
-            android:name="com.remainder.ui.remainder_list.RemainderListActivity"
-            android:label=""
-            android:theme="@style/AppTheme.NoActionBar" />
--->
+        <!--  <activity
+              android:name="com.remainder.ui.remainder_list.RemainderListActivity"
+              android:label=""
+              android:theme="@style/AppTheme.NoActionBar" />
+  -->
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
@@ -168,13 +167,34 @@
             android:name="com.razorpay.ApiKey"
             android:value="rzp_live_T6gGsTQiL5Wava" />
 
-        <meta-data android:name="android.webkit.WebView.EnableSafeBrowsing"
+        <meta-data
+            android:name="android.webkit.WebView.EnableSafeBrowsing"
             android:value="true" />
 
 
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
 
-        <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
-
+        <!--Notifications-->
+        <service
+            android:name=".ui.fcm.MyFirebaseMessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service> <!-- Set custom default icon. This is used when no icon is set for incoming notification messages. -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/logo_health_lunnel" />
+        <!--Set color used with incoming notification messages. This is used
+        when no color is set for the incoming notification message.-->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@color/colorPrimary" />
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_channel_id"
+            android:value="@string/default_notification_channel_id" />
     </application>
 
 </manifest>

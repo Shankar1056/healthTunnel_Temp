@@ -260,6 +260,7 @@
     <string name="facebook_app_id">151486993464734</string>  <!--App ID-->
     <string name="fb_login_protocol_scheme">151486993464734</string>
     <string name="action_skip_now">Skip Now</string>
-    <string name="email_instruction">We collect your email address and gender only to provide customised offers to you and both are confidential and intended solely for the use of HealthTunnel.</string>  <!--FB APP ID-->
+    <string name="email_instruction">We collect your email address and gender only to provide customised offers to you and both are confidential and intended solely for the use of HealthTunnel.</string>
+    <string name="default_notification_channel_id">HelthTunnelNotificationChannel001</string>  <!--FB APP ID-->
 
 </resources>
