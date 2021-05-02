@@ -27,8 +27,6 @@ class SplashScreen : AppCompatActivity() {
 
         handleDeepLinking()
 
-        val mService = MyFirebaseMessagingService()
-        mService.composeNotification(this, null)
         Handler().postDelayed({
             if (ClsGeneral.getPreferences(Constant.EMAIL).isNullOrEmpty()) {
                 startActivity(Intent(this, AuthActivity::class.java))

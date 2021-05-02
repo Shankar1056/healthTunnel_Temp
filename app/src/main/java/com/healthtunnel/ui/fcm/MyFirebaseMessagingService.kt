@@ -32,8 +32,8 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         composeNotification(this, remoteMessage)
     }
 
-    fun composeNotification(mContext: Context?, remoteMessage: RemoteMessage?) {
-        /*if (remoteMessage != null) {
+    private fun composeNotification(mContext: Context?, remoteMessage: RemoteMessage?) {
+        if (remoteMessage != null) {
             val message = remoteMessage.notification?.body.toString()
             val title = remoteMessage.notification?.title.toString()
             val imageUrl = remoteMessage.notification?.imageUrl.toString()
@@ -51,26 +51,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
             )
             sendNotification(mContext, model)
             Log.d(TAG, "onMessageReceived: $model")
-        }*/
-
-        val message = "Message goes here"
-        val title = "Title goes here"
-        val imageUrl =
-            "https://healthtunnel.sgp1.cdn.digitaloceanspaces.com/ServiceCategories/SV7IP3AYT5_MedicineOnline.png"
-        val categoryId = "5f4a28f1aa3e6d0776d56052"
-        val subCategoryId = "5f84336c45c9af1caede67f0"
-        val subSubCategoryId = ""
-        val model = NotificationModel(
-            true,
-            title,
-            message,
-            categoryId,
-            subCategoryId,
-            subSubCategoryId,
-            imageUrl
-        )
-        sendNotification(mContext, model)
-        Log.d(TAG, "onMessageReceived: $model")
+        }
     }
 
     /*
